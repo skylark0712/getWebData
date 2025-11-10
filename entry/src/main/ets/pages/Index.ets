@@ -26,7 +26,7 @@ struct Index {
   }
 
   build() {
-    Column({space:5}) {
+    Column({ space: 5 }) {
       Text('随机GET一句话')
       Text(this.message)
         .border({ width: 1 })
