@@ -3,7 +3,7 @@ import http from '@ohos.net.http';
 @Entry
 @Component
 struct Index {
-  @State message: string = '咔咔啦咔'
+  @State message: string = ''
   @State URL: string = 'https://v1.hitokoto.cn'
   @State countDown: number = 0
   @State isButtonEnabled: boolean = true
@@ -20,15 +20,22 @@ struct Index {
         } else if (data.responseCode != 200) {
           this.message = data.responseCode + ''
         } else {
-          this.message = JSON.parse(data.result.toString()).hitokoto + '——' + JSON.parse(data.result.toString()).from
+          this.message = JSON.parse(data.result.toString()).hitokoto + '\n——' + JSON.parse(data.result.toString()).from
         }
       })
   }
 
   build() {
-    Column() {
+    Column({space:5}) {
+      Text('随机GET一句话')
       Text(this.message)
-      Button(this.countDown > 0 ? `${this.countDown}秒后重试` : '发送请求')
+        .border({ width: 1 })
+        .width('100%')
+        .height('150vp')
+        .padding(10)
+        .align(Alignment.TopStart)
+      Button(this.countDown > 0 ? `${this.countDown} 秒后重试` : '发送请求')
+        .width('30%')
         .enabled(this.isButtonEnabled)
         .onClick(() => {
           this.getUserName()
@@ -45,5 +52,8 @@ struct Index {
         })
     }
     .width('100%')
+    .height('100%')
+    .justifyContent(FlexAlign.Center)
+    .padding('10vp')
   }
 }
