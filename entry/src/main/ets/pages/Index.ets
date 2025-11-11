@@ -1,4 +1,5 @@
 import GetAna from '../view/GetAna'
+import PostAna from '../view/PostAna';
 
 @Entry
 @Component
@@ -39,14 +40,13 @@ struct Index {
         GetAna()
       }
       .padding({ left: '12vp', right: '12vp' })
-      .tabBar(this.TabBuilder('GET', 0, $r('sys.symbol.house_fill')))
+      .tabBar(this.TabBuilder('GET', 0, $r('sys.symbol.getup_night_light')))
 
-      // TabContent() {
-      //   Setting()
-      // }
-      // .padding({ left: '12vp', right: '12vp' })
-      // .backgroundColor('#F1F3F5')
-      // .tabBar(this.TabBuilder('我的', 1, $r('sys.symbol.person_crop_circle_fill_1')))
+      TabContent() {
+        PostAna()
+      }
+      .padding({ left: '12vp', right: '12vp' })
+      .tabBar(this.TabBuilder('POST', 1, $r('sys.symbol.position')))
     }
     .margin({ bottom: '64vp' })
     .width('100%')
