@@ -1,7 +1,7 @@
 @Component
 export default struct SaveAna {
   build() {
-    Column(){
+    Column() {
       Text('叭叭啦叭')
     }
   }

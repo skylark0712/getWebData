@@ -1,4 +1,4 @@
-import http from '@ohos.net.http';
+import http from '@ohos.net.http'
 
 @Component
 export default struct PostAna {

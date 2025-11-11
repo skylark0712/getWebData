@@ -1,12 +1,12 @@
 import GetAna from '../view/GetAna'
-import PostAna from '../view/PostAna';
-import SaveAna from '../view/SaveAna';
+import PostAna from '../view/PostAna'
+import SaveAna from '../view/SaveAna'
 
 @Entry
 @Component
 struct Index {
-  @State currentIndex: number = 0;
-  private tabsController: TabsController = new TabsController();
+  @State currentIndex: number = 0
+  private tabsController: TabsController = new TabsController()
 
   @Builder
   TabBuilder(title: ResourceStr, index: number, selectedImg: Resource) {
@@ -27,8 +27,8 @@ struct Index {
     .height('56vp')
     .width('100%')
     .onClick(() => {
-      this.currentIndex = index;
-      this.tabsController.changeIndex(this.currentIndex);
+      this.currentIndex = index
+      this.tabsController.changeIndex(this.currentIndex)
     })
   }
 
@@ -61,7 +61,7 @@ struct Index {
     .barHeight('80vp')
     .barMode(BarMode.Fixed)
     .onChange((index: number) => {
-      this.currentIndex = index;
+      this.currentIndex = index
     })
   }
 }
