@@ -1,5 +1,6 @@
 import http from '@ohos.net.http'
 
+@Preview
 @Component
 export default struct GetAna {
   @State message: string = ''
@@ -72,6 +73,9 @@ export default struct GetAna {
               }
             }, 1000)
           })
+        // TODO
+        Button('保存')
+          .width('20%')
       }
       .margin({ bottom: '300vp' })
     }
