@@ -1,5 +1,6 @@
 import GetAna from '../view/GetAna'
 import PostAna from '../view/PostAna';
+import SaveAna from '../view/SaveAna';
 
 @Entry
 @Component
@@ -47,6 +48,12 @@ struct Index {
       }
       .padding({ left: '12vp', right: '12vp' })
       .tabBar(this.TabBuilder('POST', 1, $r('sys.symbol.position')))
+
+      TabContent() {
+        SaveAna()
+      }
+      .padding({ left: '12vp', right: '12vp' })
+      .tabBar(this.TabBuilder('保存', 2, $r('sys.symbol.save')))
     }
     .margin({ bottom: '64vp' })
     .width('100%')
