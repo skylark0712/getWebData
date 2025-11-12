@@ -86,6 +86,7 @@ export class RDBStoreUtil {
       .catch((err: BusinessError) => {
         hilog.error(0x0000, TAG, `SQL执行失败, code is ${err.code}, message is ${err.message}`)
       })
+    console.log(`查询成功，查到了 ${anasSet.length} 条数据`)
     return anasSet
   }
 
@@ -105,7 +106,15 @@ export class RDBStoreUtil {
   }
 
   async deletePlan(id: number) {
-    // todo
+    let predicates = new relationalStore.RdbPredicates('ANA')
+    predicates.equalTo('id', id)
+    await this.objectiveRDB?.delete(predicates)
+      .then((rows: number) => {
+        hilog.info(0x0000, TAG, `Delete rows: ${rows}`)
+      })
+      .catch((err: BusinessError) => {
+        hilog.error(0x0000, TAG, `SQL执行失败, code is ${err.code}, message is ${err.message}`)
+      })
   }
 }
 

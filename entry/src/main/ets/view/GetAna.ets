@@ -1,4 +1,6 @@
 import http from '@ohos.net.http'
+import RDBStoreUtil from '../common/database/RDBStoreUtil'
+import { AnaItem } from '../viewmodel/AnaItem'
 
 @Preview
 @Component
@@ -8,6 +10,16 @@ export default struct GetAna {
   @State countDown: number = 0
   @State isButtonEnabled: boolean = true
   @State anaType: string = ''
+  @State anasSet: Array<AnaItem> = []
+
+  async aboutToAppear(): Promise<void> {
+    RDBStoreUtil.createAnaTable()
+    RDBStoreUtil.initAnaTable()
+    RDBStoreUtil.insertAna('咔咔啦咔')
+    await RDBStoreUtil.queryAllAnas().then((value) => {
+      this.anasSet = value
+    })
+  }
 
   getUserName(type: string) {
     let httpRequest = http.createHttp()
@@ -73,11 +85,27 @@ export default struct GetAna {
               }
             }, 1000)
           })
-        // TODO
         Button('保存')
           .width('20%')
       }
-      .margin({ bottom: '300vp' })
+      .padding({ bottom: '300vp' })
+      .border({ width: 1 })
+
+      List() {
+        ForEach(this.anasSet, (item: AnaItem) => {
+          ListItem() {
+            Row() {
+              Column() {
+                Text(item.anaContent)
+              }
+            }
+          }
+        }, (item: AnaItem) => JSON.stringify(item))
+      }
+      .width('100%')
+      .height('70vp')
+      .border({ width: 1 })
+
     }
     .width('100%')
     .height('100%')
